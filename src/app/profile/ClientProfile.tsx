@@ -1,60 +1,8 @@
-// // app/profile/ClientProfile.tsx (клієнтський)
-// "use client";
-
-// import Link from "next/link";
-
-// export default function ClientProfile() {
-//   const handleError = () => {
-//     throw new Error("Помилка на Profile!");
-//   };
-
-//   return (
-//     <div style={{ padding: "2rem" }}>
-//       <h1 className="text-4xl font-extrabold text-blue-800 mb-4 drop-shadow-sm">
-//         Profile
-//       </h1>
-
-//       <button
-//         onClick={handleError}
-//         style={{
-//           padding: "0.5rem 1rem",
-//           backgroundColor: "#ff4d4f",
-//           color: "white",
-//           border: "none",
-//           borderRadius: "6px",
-//           cursor: "pointer",
-//           fontWeight: "bold",
-//           marginTop: "1rem",
-//           marginRight: "1rem",
-//         }}
-//       >
-//         Викликати помилку
-//       </button>
-
-//       <Link href="/">
-//         <button
-//           style={{
-//             padding: "0.5rem 1rem",
-//             backgroundColor: "#2563eb",
-//             color: "white",
-//             border: "none",
-//             borderRadius: "6px",
-//             cursor: "pointer",
-//             fontWeight: "bold",
-//             marginTop: "1rem",
-//           }}
-//         >
-//           Повернутись на головну
-//         </button>
-//       </Link>
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
+import ButtonError from "@/components/ButtonError";
 
 export default function ClientProfile() {
   const [hasError, setHasError] = useState(false);
@@ -64,44 +12,36 @@ export default function ClientProfile() {
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1 className="text-4xl font-extrabold text-blue-800 mb-4 drop-shadow-sm">
-        Profile
-      </h1>
-
-      <button
-        onClick={() => setHasError(true)}
-        style={{
-          padding: "0.5rem 1rem",
-          backgroundColor: "#ff4d4f",
-          color: "white",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontWeight: "bold",
-          marginTop: "1rem",
-          marginRight: "1rem",
-        }}
+    <div
+      className="min-h-screen flex items-center justify-center
+                 bg-[var(--background)] text-[var(--foreground)] transition-colors duration-500"
+    >
+      <div
+        className="text-center p-8 shadow-md rounded-md
+                      bg-white/90 dark:bg-gray-900/90
+                      backdrop-blur-sm"
       >
-        Викликати помилку
-      </button>
+        <h1 className="text-4xl font-extrabold text-blue-800 mb-6 drop-shadow-sm">
+          Profile
+        </h1>
 
-      <Link href="/">
         <button
-          style={{
-            padding: "0.5rem 1rem",
-            backgroundColor: "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-            fontWeight: "bold",
-            marginTop: "1rem",
-          }}
+          onClick={() => setHasError(true)}
+          className="px-4 py-2 bg-red-500 text-white font-bold rounded-md hover:bg-red-600 transition mb-4 mr-2"
         >
-          Повернутись на головну
+          Викликати помилку
         </button>
-      </Link>
+
+        <Link href="/">
+          <button className="px-4 py-2 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 transition mb-4">
+            Повернутись на головну
+          </button>
+        </Link>
+
+        <div className="mt-6">
+          <ButtonError />
+        </div>
+      </div>
     </div>
   );
 }
